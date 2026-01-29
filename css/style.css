@@ -1,0 +1,2406 @@
+@import url(https://fonts.bunny.net/css?family=chivo:700|manrope:400,500,700,800|shippori-mincho:700,800);
+/*import vendors*/
+@import url(../css/vendors/normalize.css);
+@import url(../css/vendors/bootstrap.min.css);
+@import url(../css/vendors/uicons-regular-rounded.css);
+@import url(../css/plugins/swiper-bundle.min.css);
+@import url(../css/plugins/magnific-popup.css);
+@import url(../css/plugins/select2.min.css);
+@import url(../css/plugins/slick.css);
+@import url(../css/plugins/perfect-scrollbar.css);
+@import url(../css/plugins/animate.min.css);
+/*RESET*/
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+/*ol,*/
+/*ul,
+li,*/
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+main {
+    display: block;
+    clear: both;
+}
+
+
+/* ==============================================
+   ИСПРАВЛЕННЫЙ БЛОК (ВИДЕО + ОТСТУПЫ)
+   ============================================== */
+
+/* 1. Видео фон и обертка */
+.video-sections-wrapper {
+    position: relative;
+    /* Убрали жесткий height: 100vh, оставили только min-height */
+    min-height: 100vh; 
+    width: 100%;
+    overflow: hidden; /* Обрезаем только видео, если оно торчит, но блок будет расти */
+}
+
+.video-sections-wrapper .video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.video-sections-wrapper .video-background video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 2. Секция с контентом */
+.fullscreen-section {
+    /* ВАЖНО: Меняем height на min-height */
+    min-height: 100vh !important; 
+    height: auto !important; /* Разрешаем блоку растягиваться вниз */
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Контент начинается сверху */
+    
+    /* ОТСТУПЫ ДЛЯ ДЕСКТОПА: 50px сверху/снизу, 20px слева/справа */
+    padding: 50px 20px !important; 
+    
+    margin: 0 !important;
+    position: relative;
+    z-index: 2;
+    box-sizing: border-box; /* Чтобы padding не увеличивал ширину */
+}
+
+/* На всякий случай сбрасываем контейнер, если он где-то остался */
+.fullscreen-section .container {
+    height: auto;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+/* 3. Настройки для МОБИЛЬНЫХ устройств (меньше 768px) */
+@media (max-width: 768px) {
+    .video-sections-wrapper,
+    .fullscreen-section {
+        /* Гарантируем, что на телефоне высота не фиксирована */
+        height: auto !important; 
+        min-height: 100vh !important;
+    }
+    
+    .fullscreen-section {
+        /* ОТСТУПЫ ДЛЯ МОБИЛЬНОГО: 20px со всех сторон */
+        padding: 20px 20px !important; 
+        
+        /* Разрешаем скролл, если контент длинный */
+        overflow-y: visible !important; 
+    }
+    
+    /* Центрирование текста на мобильных (опционально, для красоты) */
+    .header-plaque {
+        margin: 0 auto 15px auto !important;
+    }
+}
+
+
+
+
+
+thead {
+    font-weight: 600;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: "";
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+
+input,
+select,
+button,
+textarea {
+    font-family: "Manrope", sans-serif;
+    font-size: 14px;
+}
+
+*:focus,
+select:focus,
+.custom-select:focus,
+button:focus,
+textarea:focus,
+textarea.form-control:focus,
+input.form-control:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+[type="text"].form-control:focus,
+[type="password"].form-control:focus,
+[type="email"].form-control:focus,
+[type="tel"].form-control:focus,
+[contenteditable].form-control:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+input:focus::-moz-placeholder {
+    opacity: 0;
+    -moz-transition: 0.4s;
+    transition: 0.4s;
+}
+
+li.hr span {
+    width: 100%;
+    height: 1px;
+    background-color: #e4e4e4;
+    margin: 20px 0;
+    display: block;
+}
+
+/*--- Common Classes---------------------*/
+::-moz-selection {
+    background: #069; /* WebKit/Blink Browsers */
+    color: #fff;
+}
+::selection {
+    background: #069; /* WebKit/Blink Browsers */
+    color: #fff;
+}
+
+::-moz-selection {
+    background: #006699; /* Gecko Browsers */
+    color: #fff;
+}
+
+::-moz-placeholder {
+    color: #122830;
+    opacity: 1;
+}
+
+::placeholder {
+    color: #122830;
+    opacity: 1;
+}
+
+:-ms-input-placeholder,
+::-webkit-input-placeholder {
+    color: #122830;
+    opacity: 1;
+}
+
+*:focus,
+select:focus,
+.custom-select:focus,
+button:focus,
+textarea:focus,
+textarea.form-control:focus,
+input.form-control:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+[type="text"].form-control:focus,
+[type="password"].form-control:focus,
+[type="email"].form-control:focus,
+[type="tel"].form-control:focus,
+[contenteditable].form-control:focus {
+    outline: none !important;
+    box-shadow: none;
+}
+
+.img-responsive {
+    max-width: 100%;
+}
+
+body {
+    font-family: "Manrope", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Manrope", sans-serif;
+    font-style: normal;
+}
+
+h1 {
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 72px;
+}
+
+h2 {
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 56px;
+}
+
+h3 {
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 44px;
+}
+
+h4 {
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 34px;
+}
+
+h5 {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 28px;
+}
+
+h6 {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+ul {
+    padding: 0 0 0 20px;
+}
+
+li {
+    display: list-item;
+    unicode-bidi: isolate;
+}
+
+
+
+
+/* цвет*/
+
+.bg-brand-1 {
+    background-color: #CCD7FF !important;
+}    
+
+.bg-brand-2 {
+    background-color: #F9BECC !important;
+}
+
+.bg-brand-3 {
+    background-color: #b3ffd0 !important;
+}
+
+.bg-brand-4 {
+    background-color: #fcec95  !important;
+}
+
+.bg-brand-5 {
+    background-color: #f1b1bf !important;
+}
+
+.bg-brand-6 {
+    background-color: #0028B8 !important;
+}
+
+.color-text-white {
+    color: #ffffff;
+}
+
+.color-text-grafit {
+    color: #033F59;
+}
+
+.color-text-1 {
+    color: #0028B8;
+}
+
+.color-text-2 {
+    color: #77091F;
+}
+
+.color-text-3 {
+    color: #005721;
+}
+
+
+
+/* шрифты*/
+.font-lg {
+    font-weight: 500;
+    font-family: "Manrope", sans-serif;
+    line-height: 23px;
+    font-size: 18px;
+}
+
+.font-md {
+    font-weight: 500 !important;
+    font-family: "Manrope", sans-serif !important;
+    line-height: 24px !important;
+    font-size: 16px !important;
+}
+
+.font-sm {
+    font-weight: 500;
+    font-family: "Manrope", sans-serif;
+    line-height: 18px;
+    font-size: 14px;
+}
+
+.font-xs {
+    font-weight: 500;
+    font-family: "Manrope", sans-serif;
+    line-height: 18px;
+    font-size: 12px;
+}
+
+.font-md-bold {
+    font-weight: 700;
+    font-family: "Manrope", sans-serif;
+    line-height: 24px;
+    font-size: 16px;
+}
+
+.font-sm-bold {
+    font-weight: 700 !important;
+    font-family: "Manrope", sans-serif !important;
+    line-height: 18px !important;
+    font-size: 14px !important;
+}
+
+
+.section {
+    display: inline-block;
+    width: 100%;
+}
+---
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Rubik', sans-serif !important;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Rubik', sans-serif !important;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Rubik', sans-serif !important;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+---
+
+
+a {
+    color: #071920;
+    text-decoration: none;
+}
+a:hover {
+    color: #9900ff;
+}
+
+@media (min-width: 1400px) {
+    .container,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container-xl,
+    .container-xxl {
+        max-width: 1410px;
+    }
+}
+.hover-up {
+    transition: all 0.25s cubic-bezier(0.02, 0.01, 0.47, 1);
+}
+.hover-up:hover {
+    transform: translateY(-2px);
+    transition: all 0.25s cubic-bezier(0.02, 0.01, 0.47, 1);
+}
+
+
+.bd-rd16 {
+    border-radius: 16px;
+}
+
+
+
+.rating img {
+    width: 12px;
+}
+
+
+
+
+ul {
+    padding: 0 0 0 20px;
+    list-style-type: disc;
+}
+
+.kvalificatia {
+    padding-top: 5px;
+}
+
+::marker {
+    unicode-bidi: isolate;
+    font-variant-numeric: tabular-nums;
+    text-transform: none;
+    text-indent: 0px !important;
+    text-align: start !important;
+    text-align-last: auto !important;
+}
+
+
+a,
+button,
+img,
+input,
+span,
+h4 {
+    transition: all 0.3s ease 0s;
+}
+
+
+.img-reveal {
+    visibility: hidden;
+    position: relative;
+}
+.img-reveal img {
+    height: 100%;
+    width: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+/*Типографика*/
+body {
+    font-family: "Manrope", sans-serif;
+    font-size: 14px;
+    line-height: 18px;
+    font-style: normal;
+    font-weight: 500;
+    position: relative;
+}
+
+
+/*Кнопки*/
+
+.btn {
+    padding: 10px 0px 10px 22px;
+    font-family: "Manrope", sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    text-decoration: none;
+    position: relative;
+}
+.btn.btn-brand-1 {
+    padding: 15px 20px;
+    color: #ffffff;
+    background: #E72541;
+    border-radius: 30px;
+    border-color: #ffffff;
+    border-width: 2px;
+    font-size: 18px;
+    line-height: 18px;
+    font-weight: 500;
+    margin-right: 10px;
+}
+.btn.btn-brand-1 svg {
+    color: #ffffff;
+}
+.btn.btn-brand-1:hover {
+    background-color: #ffffff;
+    color: #c21731;
+    border-color: #c21731;
+}
+.btn.btn-brand-1:hover * {
+    color: #0028B8}
+
+
+
+.btn.btn-brand-2 {
+    padding: 15px 20px;
+    color: #ffffff;
+    background: #0028B8 ;
+    border-radius: 30px;
+    border-color: #ffffff;
+    border-width: 2px;
+    font-size: 18px;
+    line-height: 18px;
+    font-weight: 500;
+}
+.btn.btn-brand-2 svg {
+    color: #ffffff;
+}
+.btn.btn-brand-2:hover {
+    background-color: #ffffff;
+    color: #0028B8;
+    border-color: #0028B8;
+}
+.btn.btn-brand-2:hover * {
+    color: #0028B8}
+
+
+.btn.btn-brand-3 {
+    padding: 15px 20px;
+    color: #0028B8;
+    border-radius: 30px;
+    border-color: #0028B8;
+    border-width: 2px;
+    font-size: 18px;
+    line-height: 18px;
+    font-weight: 500;
+}
+.btn.btn-brand-3 svg {
+    color: #ffffff;
+}
+.btn.btn-brand-3:hover {
+    background-color: #0028B8;
+    color: #ffffff;
+}
+.btn.btn-brand-3:hover * {
+    color: #0028B8}
+
+
+.btn.btn-brand-4 {
+    padding: 15px 20px;
+    color: #77091F;
+    border-radius: 30px;
+    border-color: #77091F;
+    border-width: 2px;
+    font-size: 18px;
+    line-height: 18px;
+    font-weight: 500;
+}
+.btn.btn-brand-4 svg {
+    color: #ffffff;
+}
+.btn.btn-brand-4:hover {
+    background-color: #77091F;
+    color: #ffffff;
+}
+.btn.btn-brand-4:hover * {
+    color: #77091F}
+
+
+.btn.btn-brand-5 {
+    padding: 15px 20px;
+    color: #005721;
+    border-radius: 30px;
+    border-color: #005721;
+    border-width: 2px;
+    font-size: 18px;
+    line-height: 18px;
+    font-weight: 500;
+}
+.btn.btn-brand-5 svg {
+    color: #ffffff;
+}
+.btn.btn-brand-5:hover {
+    background-color: #005721;
+    color: #ffffff;
+}
+.btn.btn-brand-5:hover * {
+    color: #005721}
+
+.btn.btn-default svg {
+    transition-duration: 0.2s;
+}
+.btn.btn-default:hover {
+    color: #9900ff !important;
+}
+.btn.btn-default:hover svg {
+    transform: rotate(-45deg);
+    transition-duration: 0.2s;
+    color: #0028B8 !important;
+}
+.btn.btn-default.color-brand-1 {
+    transition-duration: 0.2s;
+}
+.btn.btn-default.color-brand-1 svg {
+    color: #0028B8    transition-duration: 0.2s;
+}
+.btn.btn-tag {
+    padding: 6px 10px 6px 11px;
+    border-radius: 4px;
+    color: #ffffff;
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: 700;
+}
+
+
+.btn-app {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 15px;
+}
+.btn-app img {
+    display: block;
+}
+
+
+
+
+/* ==============================================
+   ФИНАЛЬНЫЕ ИСПРАВЛЕНИЯ (Вставить в конец CSS)
+   ============================================== */
+
+/* 1. ОБЩАЯ СТРУКТУРА ШАПКИ */
+.header {
+    width: 100%;
+    background: #fff;
+    border-bottom: 1px solid #b9cad0;
+    z-index: 1000;
+    position: relative;
+}
+
+.header .main-header {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px; /* Высота шапки на десктопе */
+    padding: 0 30px; /* Отступы от краев экрана */
+    box-sizing: border-box;
+}
+
+/* 2. ЛЕВАЯ ЧАСТЬ (ЛОГО + МЕНЮ) */
+.header .header-left {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    min-width: 0; /* Позволяет контенту сжиматься, если надо */
+}
+
+.header .header-logo {
+    flex-shrink: 0; /* Логотип не сплющивается */
+    margin-right: 20px;
+}
+
+/* 3. ЦЕНТРАЛЬНОЕ МЕНЮ */
+.header .header-nav {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    min-width: 0; /* Критично: позволяет меню сжиматься */
+}
+
+.header .main-menu {
+    display: flex !important;
+    /* ИСПРАВЛЕНИЕ: gap уменьшается от 40px до 10px в зависимости от ширины экрана */
+    gap: clamp(10px, 2vw, 40px) !important; 
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100%;
+    justify-content: center;
+}
+
+.header .main-menu li {
+    flex-shrink: 0; /* Пункты не ломаются */
+}
+
+.header .main-menu li a {
+    white-space: nowrap;
+    /* ИСПРАВЛЕНИЕ: Шрифт чуть меньше на тесных экранах, чтобы влезло */
+    font-size: clamp(14px, 1vw, 16px) !important; 
+    color: #071920;
+    text-decoration: none;
+    padding: 5px 0;
+}
+
+/* 4. ПРАВАЯ ЧАСТЬ */
+.header .header-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-shrink: 0; 
+    gap: 20px; /* Отступ между кнопкой и бургером */
+}
+
+/* Кнопка "Задайте вопрос" */
+.header .header-right .btn {
+    white-space: nowrap;
+    height: 52px;
+    display: inline-flex;
+    align-items: center;
+    margin: 0 !important;
+}
+
+/* 5. НАСТРОЙКА БУРГЕРА (ИСПРАВЛЕНО ПОЯВЛЕНИЕ) */
+.burger-icon {
+    display: none; /* Скрыт на большом экране */
+    position: relative;
+    width: 24px;
+    height: 20px;
+    cursor: pointer;
+    /* Сброс позиционирования */
+    top: auto !important;
+    right: auto !important;
+    left: auto !important;
+    bottom: auto !important;
+    border-radius: 2px; /* Можно добавить скругление краев для мягкости */
+}
+
+/* ВАЖНО: Красим линии бургера в темный цвет, иначе их не видно на белом */
+.burger-icon > span,
+.burger-icon > span::before,
+.burger-icon > span::after {
+    background-color: #0028B8 !important; /* Цвет вашего бренда */
+    height: 2px !important; /* Чуть толще, чтобы было видно */
+    width: 100%;
+    position: absolute;
+    left: 0;
+    display: block;
+}
+
+.burger-icon-top { top: 0; }
+.burger-icon-mid { top: 8px; }
+.burger-icon-bottom { top: 16px; }
+
+/* ==============================================
+   ФИНАЛЬНЫЙ ФИКС БУРГЕРА И МЕНЮ
+   ============================================== */
+
+/* ============================================================
+   ИСПРАВЛЕННЫЙ БЛОК БУРГЕРА И МЕНЮ
+   ============================================================ */
+
+/* --- 1. ВЕРСИЯ ДЛЯ ТЕЛЕФОНОВ И ПЛАНШЕТОВ (До 1199px) --- */
+@media (max-width: 1199.98px) {
+    
+    /* А. Настройка кнопки бургера */
+    .burger-icon {
+        display: block !important;       /* Обязательно показываем */
+        visibility: visible !important;  /* Делаем видимым */
+        opacity: 1 !important;           /* Полная непрозрачность */
+        pointer-events: auto !important; /* РАЗРЕШАЕМ КЛИК */
+        cursor: pointer !important;      /* Курсор-рука */
+        z-index: 10000 !important;       /* Поверх всего */
+        position: relative;              /* Чтобы z-index работал */
+    }
+
+    /* Б. Настройка самого выезжающего меню (по умолчанию скрыто) */
+    .mobile-header-wrapper-style {
+        position: fixed;
+        top: 0;
+        right: 0; /* Прижимаем к правому краю */
+        bottom: 0;
+        width: 300px; /* Ширина меню */
+        max-width: 100%;
+        background-color: #ffffff;
+        z-index: 9999; /* Чуть ниже кнопки бургера */
+        
+        /* Скрываем его за правой границей экрана */
+        visibility: hidden;
+        opacity: 0;
+        transform: translate(100%, 0); 
+        transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    /* В. Состояние "ОТКРЫТО" (этот класс добавляет Javascript) */
+    .mobile-header-wrapper-style.sidebar-visible {
+        visibility: visible !important;
+        opacity: 1 !important;
+        transform: translate(0, 0) !important; /* Выезжает на экран */
+    }
+    
+    /* Г. Затемнение фона при открытом меню */
+    .body-overlay-1.active {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+}
+
+
+/* --- 2. ВЕРСИЯ ДЛЯ КОМПЬЮТЕРОВ (От 1200px) --- */
+@media (min-width: 1200px) {
+    /* Жестко скрываем иконку бургера */
+    .burger-icon {
+        display: none !important;
+        pointer-events: none !important; 
+    }
+
+    /* Жестко прячем мобильное меню, чтобы не мешало */
+    .mobile-header-wrapper-style,
+    .mobile-header-wrapper-style.sidebar-visible {
+        visibility: hidden !important;
+        opacity: 0 !important;
+        transform: translate(100%, 0) !important;
+        pointer-events: none;
+    }
+
+    /* Прячем затемнение */
+    .body-overlay-1 {
+        display: none !important;
+    }
+    
+    /* Разрешаем скролл, если вдруг он заблокировался */
+    body, body.mobile-menu-active {
+        overflow: auto !important;
+        overflow-x: hidden !important;
+    }
+}
+
+
+
+
+
+/* ==============================================
+   КНОПКА ДЛЯ СЛАБОВИДЯЩИХ (АДАПТАЦИЯ)
+   ============================================== */
+.accessibility-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 5px 20px;
+    border: 2px solid #0028B8;
+    border-radius: 50px;
+    background-color: #ffffff;
+    color: #0028B8;
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    height: 52px; /* Фиксируем высоту */
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+.accessibility-btn img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    display: block;
+}
+.accessibility-btn:hover {
+    background-color: #0028B8;
+    color: #ffffff;
+}
+.accessibility-btn:hover img {
+    filter: brightness(0) invert(1);
+}
+
+/* --- ТОЧКА ПЕРЕЛОМА 1: Сжимаем кнопку для слабовидящих РАНЬШЕ (1300px) --- */
+/* Это решит проблему, когда меню заезжает под кнопки */
+@media (max-width: 1350px) {
+    .accessibility-btn span {
+        display: none !important;
+    }
+    .accessibility-btn {
+        padding: 0 !important;
+        width: 48px !important;
+        height: 48px !important;
+        border-radius: 50% !important;
+    }
+    .header .header-logo {
+        margin-right: 15px;
+    }
+}
+
+/* ==============================================
+   АДАПТИВНОСТЬ ЭКРАНОВ
+   ============================================== */
+
+/* ПЛАНШЕТЫ (Меньше 1200px): Скрываем меню, показываем бургер */
+@media (max-width: 1199.98px) {
+    .nav-main-menu {
+        display: none !important;
+    }
+    
+    .burger-icon {
+        display: block !important; /* Показываем бургер */
+    }
+    
+    /* Растягиваем правую часть, чтобы прижать элементы к краям */
+    .header .header-right {
+        flex-grow: 1; 
+    }
+}
+
+/* МОБИЛЬНЫЕ (Меньше 576px): Настройка кнопки и отступов */
+@media (max-width: 575.98px) {
+    .header .main-header {
+        padding: 0 15px; /* Уменьшаем отступы по краям экрана */
+        height: 70px;
+    }
+
+    /* ПРИНУДИТЕЛЬНО ПОКАЗЫВАЕМ КНОПКУ "ЗАДАТЬ ВОПРОС" */
+    .block-ask-btn.d-none {
+        display: block !important;
+    }
+
+    /* Уменьшаем кнопку "Задать вопрос", чтобы влезла */
+    .header .header-right .btn-brand-1 {
+        font-size: 12px !important;
+        padding: 0 15px !important;
+        height: 40px;
+        line-height: 1;
+    }
+    
+    /* Уменьшаем кнопку с глазом под размер соседней */
+    .accessibility-btn {
+        width: 40px !important;
+        height: 40px !important;
+    }
+    .accessibility-btn img {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* Уменьшаем отступ между кнопкой и бургером */
+    .header .header-right {
+        gap: 15px;
+    }
+}
+
+
+
+/* ==============================================
+   ФИНАЛЬНОЕ ПОЗИЦИОНИРОВАНИЕ (ВЕРХ И КРАЯ)
+   ============================================== */
+
+/* 1. Настройка самой секции */
+.fullscreen-section {
+    /* Принудительно ставим контент в начало (верх) секции */
+    display: flex !important;
+    align-items: flex-start !important; 
+    justify-content: flex-start !important;
+    
+    /* Задаем ваши отступы */
+    padding-top: 15px !important;   /* Отступ от Header */
+    padding-left: 40px !important;  /* Отступ от левого края */
+    padding-right: 40px !important; /* Отступ от правого края */
+    
+    /* Сбрасываем возможные конфликты высоты */
+    height: 100vh !important;
+    box-sizing: border-box; /* Чтобы padding не увеличивал ширину экрана */
+}
+
+/* 2. Настройка ряда (Row), в котором лежит контент */
+.top-aligned-content {
+    /* Убираем стандартные отрицательные отступы Bootstrap, 
+       которые могут растягивать контент за пределы экрана */
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+    
+    /* Гарантируем, что внутри ряда элементы тоже прижаты к верху */
+    align-items: flex-start !important;
+}
+
+/* 3. Дополнительная страховка для колонок */
+.top-aligned-content > div {
+    padding-left: 0 !important; /* Убираем лишние паддинги колонок, если нужно строго 20px от края */
+    padding-right: 0 !important;
+}
+
+/* 4. Адаптация для мобильных (чтобы на телефоне тоже было красиво) */
+@media (max-width: 991px) {
+    .fullscreen-section {
+        padding-top: 20px !important; /* Чуть больше воздуха сверху на мобильных */
+        height: auto !important;      /* Разрешаем скролл, если контент не влезает */
+        min-height: 100vh;
+    }
+}
+
+
+
+
+/* ==============================================
+   1. СТИЛИ ДЛЯ ПЛАШКИ ЗАГОЛОВКА
+   ============================================== */
+
+.header-plaque {
+    /* 1. Эффект матового стекла (оставляем как было) */
+    background: rgb(255, 253, 235); 
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    
+    /* 2. Отступы и скругление (оставляем как было) */
+    border-radius: 20px;
+    padding: 30px;
+
+    /* 3. ИЗМЕНЕНИЯ: Растягиваем на всю ширину */
+    display: block;          /* Блочный элемент, а не строчный */
+    width: 100%;             /* Занимает 100% ширины родителя */
+    box-sizing: border-box;  /* Чтобы padding не увеличивал ширину больше 100% */
+}
+
+/* Дополнительно: убедимся, что текст внутри не "прилипает" к краям на маленьких экранах */
+.header-plaque h1 {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    max-width: 100%; /* Текст не вылезет за пределы */
+}
+
+
+/* ==============================================
+   БЛОК СТАТИСТИКИ (КАСТОМНАЯ СЕТКА)
+   ============================================== */
+
+/* 1. Контейнер ряда */
+.counter-row {
+    display: flex;
+    flex-wrap: wrap;
+    /* Отрицательные отступы для компенсации паддингов колонок */
+    /* 15px / 2 = 7.5px */
+    margin-left: -7.5px;
+    margin-right: -7.5px;
+    width: calc(100% + 15px);
+}
+
+/* 2. Колонки */
+.counter-col {
+    /* Отступы между блоками (7.5+7.5=15px по горизонтали) */
+    padding-left: 7.5px;
+    padding-right: 7.5px;
+    /* Отступ снизу 15px */
+    padding-bottom: 15px; 
+    box-sizing: border-box;
+}
+
+/* 3. Оформление карточки */
+.stat-plaque {
+    height: 100%; /* Карточки всегда одинаковой высоты */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    background: rgb(255, 253, 235);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    
+    padding: 20px;
+    overflow: hidden; /* Скрываем вылезающий контент, если вдруг */
+}
+
+/* Цифры */
+.stat-plaque h2 {
+    margin-top: 0 !important;
+    margin-bottom: 10px !important;
+    font-size: 48px;
+    line-height: 1;
+}
+
+/* Текст описания */
+.stat-plaque .stat-text {
+    line-height: 1.3;
+    margin-bottom: 0 !important;
+    font-weight: 500;
+}
+
+/* ==============================================
+   АДАПТИВНОСТЬ И ТОЧКИ ПЕРЕЛОМА
+   ============================================== */
+
+/* СЦЕНАРИЙ 1: Экраны больше 1440px (4 в ряд) */
+@media (min-width: 1441px) {
+    .counter-col {
+        width: 25%; /* 4 блока */
+    }
+    
+    .stat-plaque .stat-text {
+        font-size: 16px !important; /* Базовый размер, чтобы влезало */
+    }
+    
+    /* Если экран становится очень узким для 4 колонок (близко к 1440px), 
+       можно чуть уменьшить паддинги внутри карточки */
+    .stat-plaque {
+        padding: 20px 15px; 
+    }
+}
+
+/* СЦЕНАРИЙ 2: Экраны 1440px и меньше (2 в ряд) */
+@media (max-width: 1440px) {
+    .counter-col {
+        width: 50%; /* 2 блока */
+    }
+    
+    /* Места стало много, увеличиваем текст */
+    .stat-plaque .stat-text {
+        font-size: 18px !important; 
+    }
+    
+    .stat-plaque {
+        padding: 25px; /* Больше воздуха */
+    }
+}
+
+/* СЦЕНАРИЙ 3: Мобильные телефоны (меньше 576px) */
+/* Оставляем 2 в ряд, но чуть уменьшаем шрифт цифр, чтобы не ломалось */
+@media (max-width: 576px) {
+    .stat-plaque h2 {
+        font-size: 36px; /* Чуть меньше цифры */
+    }
+    .stat-plaque .stat-text {
+        font-size: 16px !important; /* Возвращаем 16px */
+    }
+    .stat-plaque {
+        padding: 15px; /* Компактнее */
+    }
+}
+
+
+
+
+/* ==============================================
+   ПРАВИЛА АДАПТАЦИИ (ПЕРЕСТРОЕНИЕ)
+   ============================================== */
+
+/* 1. БОЛЬШИЕ ЭКРАНЫ (Шире 1440px) */
+/* Ставим 4 в ряд */
+@media (min-width: 1441px) {
+    .counter-col {
+        width: 25%; /* 4 блока в ряд */
+    }
+}
+
+/* 2. ЭКРАНЫ ДО 1440px (Ноутбуки, Планшеты, Телефоны) */
+/* Перестраиваем в 2 в ряд */
+@media (max-width: 1440px) {
+    .counter-col {
+        width: 50%; /* 2 блока в ряд */
+    }
+    
+    /* Можно немного увеличить шрифт, так как места стало много */
+    .stat-plaque .stat-text {
+        font-size: 18px !important; 
+    }
+    
+    .stat-plaque {
+        padding: 25px 20px; /* Чуть больше воздуха внутри */
+    }
+}
+
+/* 3. ОЧЕНЬ МАЛЕНЬКИЕ ЭКРАНЫ (меньше 400px) */
+/* Если телефон совсем узкий, цифры могут не влезть, уменьшаем их чуть-чуть */
+@media (max-width: 400px) {
+    .stat-plaque h2 {
+        font-size: 36px;
+    }
+    .stat-plaque {
+        padding: 15px;
+    }
+}
+
+
+
+/* ==============================================
+   КНОПКИ НА ВСЮ ШИРИНУ (В РЯД)
+   ============================================== */
+
+/* Контейнер для кнопок */
+.buttons-wrapper {
+    display: flex;          /* Включаем Flexbox */
+    justify-content: space-between; /* Распределяем пространство */
+    gap: 10px;             /* Отступ между кнопками 10px (как у плашек) */
+    width: 100%;           /* Ширина контейнера равна ширине родителя */
+}
+
+/* Сами кнопки */
+.full-width-btn {
+    flex: 1;               /* Кнопки делят место поровну (по 50%) */
+    width: auto;           /* Сбрасываем фиксированную ширину, если была */
+    margin-right: 0 !important; /* Убираем старый отступ справа */
+    
+    /* Центрирование текста внутри кнопки */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+    /* Опционально: немного уменьшим шрифт, если текст во второй кнопке длинный */
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    white-space: normal;   /* Разрешаем перенос текста на две строки на мобильных */
+    line-height: 1.2;      /* Межстрочный интервал для переноса */
+    height: auto;          /* Высота подстраивается под контент */
+    min-height: 60px;      /* Минимальная высота для красоты */
+}
+
+/* АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ */
+/* Если на телефоне кнопки станут слишком узкими, можно поставить их друг под другом.
+   Если хотите всегда в ряд - удалите этот блок media query */
+@media (max-width: 575px) {
+    .buttons-wrapper {
+        flex-direction: column; /* Вертикальный столбик */
+            overflow: hidden;
+    }
+    .full-width-btn {
+        width: 100%; /* Полная ширина */
+    }
+}
+
+
+
+.card-blog-grid {
+    margin-bottom: 30px;
+}
+.card-blog-grid .card-image {
+    position: relative;
+    margin-bottom: 18px;
+}
+.card-blog-grid .card-image img {
+    border-radius: 4px;
+    width: 100%;
+}
+.card-blog-grid .card-info a {
+    text-decoration: none;
+}
+.card-blog-grid .card-info a:hover,
+.card-blog-grid .card-info a:hover * {
+    color: #9900ff !important;
+}
+.card-blog-grid.card-blog-grid-2 {
+    padding: 18px;
+    border: 1px solid #cde2e7;
+    border-radius: 4px;
+}
+
+.card-testimonial-grid {
+    border-radius: 8px;
+    display: inline-block;
+    width: 100%;
+    padding: 30px 30px 20px 30px;
+    border: 1px solid #cde2e7;
+    background: #fff url(../imgs/page/homepage1/quote.svg) no-repeat top 20px
+        right 30px;
+    transition-duration: 0.2s;
+}
+.card-testimonial-grid a {
+    text-decoration: none;
+}
+.card-testimonial-grid .card-bottom-info {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    border-top: 1px solid #ecf1f2;
+    padding-top: 16px;
+    margin-top: 20px;
+}
+.card-testimonial-grid .card-bottom-info .date-post {
+    width: 50%;
+}
+.card-testimonial-grid .card-bottom-info .rating {
+    width: 50%;
+}
+.card-testimonial-grid .card-bottom-info .rating img {
+    width: 12px;
+}
+
+
+.box-testimonial-2 .card-testimonial-grid:hover {
+    box-shadow: 0px 0px 30px 0px rgba(14, 41, 50, 0.08);
+    color: #0028B8; /* Добавлена точка с запятой */
+    border: 0px;
+}
+.box-testimonial-2 .testimonial-warning .card-testimonial-grid {
+    background-color: #ffffff;
+    border-color: #ffd166;
+}
+.box-testimonial-2
+    .testimonial-warning
+    .card-testimonial-grid
+    .card-bottom-info {
+    border-top-color: #ffd166;
+}
+
+.loader {
+    border-radius: 50%;
+    width: 2em;
+    height: 2em;
+    animation-fill-mode: both;
+    animation: load7 1.8s infinite ease-in-out;
+    color: #069;
+    font-size: 10px;
+    margin: 80px auto;
+    position: relative;
+    text-indent: -9999em;
+    transform: translateZ(0);
+    animation-delay: -0.16s;
+}
+.loader:before {
+    border-radius: 50%;
+    width: 2em;
+    height: 2em;
+    animation-fill-mode: both;
+    animation: load7 1.8s infinite ease-in-out;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -3.5em;
+    animation-delay: -0.32s;
+}
+.loader:after {
+    border-radius: 50%;
+    width: 2em;
+    height: 2em;
+    animation-fill-mode: both;
+    animation: load7 1.8s infinite ease-in-out;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 3.5em;
+}
+
+.page-loading-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform: translateZ(0) scale(1);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform-origin: 0 0;
+}
+.page-loading-inner div {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    box-sizing: content-box;
+    margin: -10px -20px;
+}
+.page-loading-inner div:nth-child(1) {
+    background: #0028B8    animation: page-loading-inner 1s linear infinite;
+    animation-delay: -0.5s;
+}
+.page-loading-inner div:nth-child(2) {
+    background: #ffffff;
+    animation: page-loading-inner 1s linear infinite;
+    animation-delay: 0s;
+}
+.page-loading-inner div:nth-child(3) {
+    background: #0028B8    animation: page-loading-inner-o 1s linear infinite;
+    animation-delay: -0.5s;
+}
+
+.page-loading {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    overflow: hidden;
+}
+
+@keyframes page-loading-inner-o {
+    0% {
+        opacity: 1;
+        transform: translate(0 0);
+    }
+    49.99% {
+        opacity: 1;
+        transform: translate(30px, 0);
+    }
+    50% {
+        opacity: 0;
+        transform: translate(30px, 0);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(0, 0);
+    }
+}
+@keyframes page-loading-inner {
+    0% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(30px, 0);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+@keyframes load7 {
+    0%,
+    80%,
+    100% {
+        box-shadow: 0 2.5em 0 -1.3em;
+    }
+    40% {
+        box-shadow: 0 2.5em 0 0;
+    }
+}
+/*page loading*/
+.preloader {
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999999999;
+    transition: 0.6s;
+    margin: 0 auto;
+}
+.preloader img {
+    max-width: 250px;
+}
+
+
+
+
+.icon-16 {
+    height: 16px;
+    color: #071920;
+}
+
+
+.banner-about {
+    background: url(../imgs/page/about/finger.png) no-repeat top 10px right 20px;
+}
+
+@keyframes hero-thumb-animation {
+    0% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+@keyframes hero-thumb-sm-animation {
+    0% {
+        transform: translateY(-20px) translateX(50px);
+    }
+    100% {
+        transform: translateY(-20px) translateX(0px);
+    }
+}
+@keyframes hero-thumb-sm-2-animation {
+    0% {
+        transform: translateY(-50px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+.shape-1 {
+    animation: hero-thumb-animation 2s linear infinite alternate;
+}
+
+.shape-2 {
+    animation: hero-thumb-sm-animation 4s linear infinite alternate;
+}
+
+.shape-3 {
+    animation: hero-thumb-sm-2-animation 4s linear infinite alternate;
+}
+
+
+
+.sticky-bar.stick {
+    animation: 700ms ease-in-out 0s normal none 1 running fadeInDown;
+    box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.05);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    left: 0;
+    transition: all 0.3s ease 0s;
+    border-bottom: 1px solid #b9cad0;
+    background: #fff;
+}
+
+
+.perfect-scroll {
+    height: calc(100vh - 55px);
+    width: 100%;
+    position: relative;
+    max-width: 370px;
+    padding: 0px 30px 0px 30px;
+    display: flex;
+    flex-wrap: wrap;
+    place-content: space-between;
+}
+
+.body-overlay-1 {
+    background: transparent;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    visibility: hidden;
+    width: 100%;
+    cursor: crosshair;
+    z-index: 1002;
+}
+
+.mobile-menu-active .body-overlay-1 {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+.mobile-header-wrapper-style {
+    position: fixed;
+    top: 0;
+    max-width: 370px;
+    width: 100%;
+    min-height: 100vh;
+    bottom: 0;
+    right: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+    background-color: #ffffff;
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.09);
+    z-index: 1003;
+}
+.mobile-header-wrapper-style.sidebar-visible {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(0, 0);
+}
+.mobile-header-wrapper-style .mobile-header-wrapper-inner {
+    padding: 0px 0px 0px 0px;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.mobile-header-wrapper-style .mobile-header-wrapper-inner .mobile-logo {
+    position: relative;
+    border-bottom: 1px solid #cde2e7;
+    padding: 15px 30px 15px 30px;
+}
+.mobile-header-wrapper-style .mobile-header-wrapper-inner .mobile-logo img {
+    width: 60px;
+}
+.mobile-header-wrapper-style
+    .mobile-header-wrapper-inner
+    .mobile-header-content-area
+    .mobile-menu-wrap
+    nav
+    .mobile-menu
+    li {
+    display: block;
+    position: relative;
+    padding: 13px 0;
+}
+.mobile-header-wrapper-style
+    .mobile-header-wrapper-inner
+    .mobile-header-content-area
+    .mobile-menu-wrap
+    nav
+    .mobile-menu
+    li
+    a {
+    font-size: 16px;
+    line-height: 24px;
+    font-family: "Manrope", sans-serif;
+    text-transform: capitalize;
+    font-weight: 500;
+    position: relative;
+    display: inline-block;
+    color: #0028B8    transition-duration: 0.2s;
+    text-decoration: none;
+}
+.mobile-header-wrapper-style
+    .mobile-header-wrapper-inner
+    .mobile-header-content-area
+    .mobile-menu-wrap
+    nav
+    .mobile-menu
+    li
+    a:hover {
+    color: #9900ff;
+}
+.mobile-header-wrapper-style
+    .mobile-header-wrapper-inner
+    .mobile-header-content-area
+    .mobile-menu-wrap
+    nav
+    .mobile-menu
+    li
+    ul {
+    padding: 10px 0 0 10px;
+}
+.mobile-header-wrapper-style
+    .mobile-header-wrapper-inner
+    .mobile-header-content-area
+    .mobile-menu-wrap
+    nav
+    .mobile-menu
+    li
+    ul
+    li {
+    padding: 10px 0;
+    border-bottom: none;
+}
+
+.mobile-header-wrapper-style
+    .mobile-header-wrapper-inner
+    .mobile-header-content-area
+    .mobile-menu-wrap
+    nav
+    .mobile-menu
+    li
+    ul
+    li
+    a {
+    font-size: 14px;
+    display: block;
+    font-weight: 500;
+    color: #071920;
+    padding-left: 10px;
+    position: relative;
+    transition-duration: 0.2s;
+}
+
+.mobile-header-wrapper-style
+    .mobile-header-wrapper-inner
+    .mobile-header-content-area
+    .mobile-menu-wrap
+    nav
+    .mobile-menu
+    li:hover
+    > a {
+    color: #9900ff;
+    padding-left: 3px;
+    transition-duration: 0.2s;
+}
+
+.mobile-header-wrapper-style
+    .mobile-header-wrapper-inner
+    .mobile-header-content-area
+    .mobile-header-border {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+
+
+
+/*LAYOUT -> SPACING**/
+
+
+.section-padding-50 {
+    padding: 50px 0;
+}
+
+.ptb-90 {
+    padding: 90px 0;
+}
+
+.ptb-100 {
+    padding: 100px 0;
+}
+
+
+
+.pt-10 {
+    padding-top: 10px !important;
+}
+
+
+.pt-30 {
+    padding-top: 30px !important;
+}
+
+
+.pt-40 {
+    padding-top: 40px !important;
+}
+
+
+.pt-50 {
+    padding-top: 50px !important;
+}
+
+
+.pt-80 {
+    padding-top: 80px !important;
+}
+
+
+.pt-90 {
+    padding-top: 90px !important;
+}
+
+
+.pt-100 {
+    padding-top: 100px !important;
+}
+
+
+.pb-30 {
+    padding-bottom: 30px !important;
+}
+
+
+.pb-60 {
+    padding-bottom: 60px !important;
+}
+
+.pb-90 {
+    padding-bottom: 90px !important;
+}
+
+
+.pb-100 {
+    padding-bottom: 100px !important;
+}
+
+
+.pl-0 {
+    padding-left: 0px !important;
+}
+
+
+.pr-0 {
+    padding-right: 0px !important;
+}
+
+/***************************
+    Page section margin
+****************************/
+
+
+.mt-5 {
+    margin-top: 5px !important;
+}
+
+.mt-10 {
+    margin-top: 10px !important;
+}
+
+.mt-15 {
+    margin-top: 15px !important;
+}
+
+.mt-20 {
+    margin-top: 20px !important;
+}
+
+.mt-30 {
+    margin-top: 30px !important;
+}
+
+
+.mt-40 {
+    margin-top: 40px !important;
+}
+
+.mt-50 {
+    margin-top: 50px !important;
+}
+
+
+.mt-55 {
+    margin-top: 55px !important;
+}
+
+.mt-80 {
+    margin-top: 80px !important;
+}
+
+.mt-100 {
+    margin-top: 100px !important;
+}
+
+
+.mb-10 {
+    margin-bottom: 10px !important;
+}
+
+.mb-15 {
+    margin-bottom: 15px !important;
+}
+
+.mb-20 {
+    margin-bottom: 20px !important;
+}
+
+.mb-30 {
+    margin-bottom: 30px !important;
+}
+
+.mb-50 {
+    margin-bottom: 50px !important;
+}
+
+.mb-60 {
+    margin-bottom: 60px !important;
+}
+
+
+.ml-5 {
+    margin-left: 5px !important;
+}
+
+
+.mr-15 {
+    margin-right: 0px !important;
+}
+
+
+.box-author {
+    display: flex;
+    align-items: center;
+}
+.box-author .author-info .author-name {
+    display: block;
+}
+
+
+.box-cover-video {
+    overflow: hidden;
+    border-radius: 8px;
+    position: relative;
+    background-image: url(../imgs/page/homepage1/finger-2.png);
+    background-position: bottom right;
+    background-repeat: no-repeat;
+}
+
+.box-info-video {
+    display: inline-block;
+    width: 100%;
+    padding: 0px 60px 0px 30px;
+}
+
+.box-info-video img {
+    width: 100%;
+}
+
+
+.box-banner-6 {
+    position: relative;
+    width: 100%;
+    text-align: left;
+}
+.box-banner-6 .img-main {
+    position: relative;
+    z-index: 3;
+    display: block;
+    max-width: 90%;
+    left: 70px;
+}
+.box-banner-6 .img-testimonials-1 {
+    position: absolute;
+    bottom: 360px;
+    left: -15px;
+    z-index: 2;
+}
+.box-banner-6 .img-testimonials-2 {
+    position: absolute;
+    bottom: 80px;
+    right: 0px;
+    z-index: 4;
+}
+
+.box-banner-6 .img-testimonials-3 {
+    position: absolute;
+    bottom: 580px;
+    left: 540px;
+    z-index: 2;
+}
+
+.banner-6 {
+    overflow: hidden;
+    /*background-color: #e9e8e4a4;*/
+}
+
+.box-banner-right-home6 {
+    padding-bottom: 50px;
+    padding-top: 50px;
+}
+
+
+
+
+.box-cover-video-convert {
+    background-image: url(../imgs/page/homepage1/finger-2.png);
+    background-repeat: no-repeat;
+    background-position: left -20px bottom;
+}
+.box-cover-video-convert .box-info-video {
+    padding-left: 80px;
+    padding-right: 50px;
+}
+
+
+
+.list-buttons {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+.list-buttons li a {
+    display: inline-block;
+    padding: 11px 22px;
+    background-color: #0028B8;
+    border-radius: 8px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 24px;
+}
+.list-buttons-circle li a {
+    border-radius: 50px !important;
+    background-color: #0028B8 !important;
+    color: #ffffff !important;
+    font-size: 20px !important;
+    line-height: 28px !important;
+    font-weight: bold !important;
+    padding: 24px 32px !important;
+}
+a, button, img, input, span, h4 {
+    transition: all 0.3s ease 0s;
+}
+
+a {
+    color: #071920;
+    text-decoration: none;
+}
+
+
+
+
+
+.list-buttons-circle {
+    border-bottom: 0px;
+    margin-bottom: 90px;
+}
+.list-buttons-circle li {
+    display: inline-block;
+    margin: 0px 4px 8px 4px;
+}
+.list-buttons-circle li a {
+    background-color: #0028B8 !important;
+    color: #ffffff !important;
+    /* Исправление: объединяем всё в одну строку (толщина, стиль, цвет) */
+    border: 2px solid #ffffff !important; 
+    border-radius: 50px !important;
+    font-size: 20px !important;
+    line-height: 28px !important;
+    font-weight: bold !important;
+    padding: 24px 32px !important;
+    display: inline-block; /* Важно для корректного отображения */
+}
+.list-buttons-circle li a.active {
+    color: #0028B8 !important;
+    background-color: #b3ffd0 !important;
+}
+
+.box-tab-32 {
+    border-radius: 32px;
+    background-color: #ffffff;
+    padding: 55px 65px;
+}
+.box-tab-32 img {
+    width: 100%;
+}
+
+.box-business-tab {
+    padding: 0px 0px 0px 30px;
+}
+
+.bg-explore {
+    position: relative;
+}
+.bg-explore .container {
+    position: relative;
+    z-index: 2;
+}
+.bg-explore:before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+    z-index: 1;
+    background-image: url(../imgs/page/homepage10/grid.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.accordion .accordion-button {
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 700;
+    color: #0028B8    border: 0px;
+    padding: 25px 30px 20px 30px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+.accordion .accordion-collapse {
+    border-width: 0 0;
+    background-color: #ecf1f2;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+.accordion .accordion-body {
+    padding: 0px 50px 30px 30px;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #ecf1f2;
+}
+.accordion-button:not(.collapsed)::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+.accordionStyle2.accordion .accordion-collapse {
+    background-color: #ffffff;
+}
+.accordionStyle2.accordion .accordion-button {
+    padding: 41px 40px;
+}
+.accordionStyle2 .accordion-button:not(.collapsed) {
+    background-color: #ffffff;
+}
+.accordionStyle2 .accordion-item {
+    background-color: #ffffff;
+    box-shadow: 9px 11px 23px 0px rgba(6, 61, 79, 0.12);
+    border-radius: 16px;
+    border: 1px solid #cde2e7;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+.accordionStyle2 .accordion-button::after {
+    background-image: url(../imgs/page/homepage9/plus.png);
+}
+
+
+.title-line {
+    font-size: 24px;
+    
+    color: #ffffff;
+    position: relative;
+    margin-bottom: 100px !important;
+}
+
+
+.bd-rd0 {
+    border-radius: 0px !important;
+}
+
+.pl-mb-0 {
+    padding-left: 0px !important;
+}
+
+.pr-mb-0 {
+    padding-right: 0px !important;
+}
+
+
+@media (max-width: 1399.98px) {
+    .box-info-video {
+        padding: 10px 20px 10px 0px;
+    }
+    .box-info-video h2 {
+        font-size: 35px;
+        line-height: 45px;
+    }
+    .box-cover-video-convert .box-info-video {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+
+    .box-info-video {
+        padding: 10px 20px 10px 0px;
+    }
+    .box-info-video h2 {
+        font-size: 35px;
+        line-height: 45px;
+    }
+    h3 {
+        font-size: 22px;
+        line-height: 28px;
+    }
+    .box-cover-video-convert .box-info-video {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .box-tab-32 {
+        padding: 25px 35px;
+    }
+    .box-business-tab {
+        padding: 30px 0px 0px 0px;
+    }
+
+}
+
+  
+ 
+
+    .box-info-video {
+        padding: 20px 20px;
+    }
+    .box-cover-video-revert .box-info-video {
+        padding: 35px 20px 30px 20px;
+    }
+    h1 {
+        font-size: 50px;
+        line-height: 60px;
+    }
+    h2 {
+        font-size: 36px;
+        line-height: 46px;
+    }
+   
+    .title-line::before {
+        width: 59px;
+    }
+    .box-tab-32 {
+        padding: 15px 15px;
+    }
+    .box-cover-video-convert .box-info-video {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 50px;
+        padding-bottom: 110px;
+        background-image: url(../imgs/page/homepage1/finger-2.png);
+        background-repeat: no-repeat;
+        background-position: left -20px bottom;
+    }
+    .list-buttons-circle li {
+        margin-bottom: 15px;
+    }
+    .list-buttons-circle li a {
+        font-size: 18px !important;
+        line-height: 24px !important;
+        font-weight: 500 !important;
+        padding: 15px 20px !important;
+    }
+}
+@media (max-width: 767.98px) {
+    .mobile-header-wrapper-style
+        .mobile-header-wrapper-inner
+        .mobile-logo
+        img {
+        max-width: 140px;
+    }
+    .bg-faqs {
+        background: #fff;
+    }
+    h2 {
+        font-size: 30px;
+        line-height: 40px;
+    }
+    .lists-logo li {
+        width: 33.33%;
+    }
+    .box-cover-video-convert .box-info-video {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 50px;
+        padding-bottom: 110px;
+    }
+    .accordion .accordion-button {
+        font-size: 16px;
+        line-height: 24px;
+    }
+    .accordionStyle2.accordion .accordion-button {
+        padding: 25px;
+    }
+    .accordionStyle2.accordion .accordion-body {
+        padding: 0px 25px 30px 25px;
+    }
+}
+@media (max-width: 575.98px) {
+    h1 {
+        font-size: 34px;
+        line-height: 40px;
+    }
+    h4 {
+        font-size: 20px;
+        line-height: 30px;
+    }
+    h5 {
+        font-size: 18px;
+        line-height: 24px;
+    }
+    .list-buttons-circle li a {
+        padding: 7px 15px;
+        font-size: 14px;
+        line-height: 18px;
+    }
+}
+@media (max-width: 499.98px) {
+    h2 {
+        font-size: 25px;
+        line-height: 35px;
+    }
+    .lists-logo li {
+        width: 50%;
+    }
+    .list-buttons-circle li a {
+        font-size: 12px !important;
+        line-height: 14px !important;
+        padding: 10px 12px !important;
+    }
+}
+@media (max-width: 449.98px) {
+    .list-buttons-circle li a {
+        padding: 13px 12px;
+    }
+}
+@media (max-width: 349.98px) {
+    .mobile-header-wrapper-style {
+        width: 310px;
+    }
+    .perfect-scroll {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Убираем отступ слева, чтобы текст встал по центру */
+    .box-banner-right-home6 .title-line {
+        padding-left: 0 !important; 
+    }
+
+    /* Скрываем декоративную полоску (тире) слева, 
+       так как при центровке она будет выглядеть лишней */
+    .box-banner-right-home6 .title-line::before {
+        display: none !important;
+    }
+    
+    /* Дополнительно: можно уменьшить огромный отступ снизу у заголовка, 
+       если он мешает (в коде было margin-bottom: 100px) */
+    .title-line {
+        margin-bottom: 20px !important;
+    }
+}
